@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Activity File Manager</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#"><span class="brand-mark">A</span><span>Activity<span class="brand-light">File</span></span></a>
+      <p class="nav-label">WORKSPACE</p>
+      <button class="nav-item active" data-view="all"><span>▦</span> All files <span class="nav-count" id="fileCount">0</span></button>
+      <button class="nav-item" data-view="recent"><span>◷</span> Recent activity</button>
+      <button class="nav-item" data-view="favorites"><span>☆</span> Favorites</button>
+      <button class="nav-item" data-view="trash"><span>♲</span> Trash</button>
+      <div class="sidebar-bottom">
+        <div class="storage-card">
+          <div class="storage-top"><span>Storage used</span><strong id="storageText">0 B</strong></div>
+          <div class="storage-track"><span id="storageBar"></span></div>
+          <small>Browser demo storage</small>
+        </div>
+        <button class="profile" id="profileBtn"><span class="avatar">U</span><span><b>Local user</b><small>Demo workspace</small></span><span class="dots">•••</span></button>
+      </div>
+    </aside>
+    <main class="main">
+      <header class="topbar">
+        <div class="crumb"><span>Workspace</span><span class="slash">/</span><b id="viewTitle">All files</b></div>
+        <div class="top-actions">
+          <label class="search"><span>⌕</span><input id="searchInput" type="search" placeholder="Search files..." aria-label="Search files"><kbd>Ctrl K</kbd></label>
+          <button class="icon-btn" id="activityBtn" title="Show activity">◷</button>
+          <button class="primary-btn" id="uploadBtn">＋ Upload files</button>
+          <input type="file" id="fileInput" multiple hidden>
+        </div>
+      </header>
+      <section class="welcome">
+        <div><p class="eyebrow">YOUR WORKSPACE</p><h1>File management, <em>made simple.</em></h1><p class="subtitle">Keep your files organized and your activity in view.</p></div>
+        <div class="welcome-art" aria-hidden="true"><span class="art-circle"></span><span class="art-file">▤</span><span class="art-star">✦</span></div>
+      </section>
+      <section class="summary-grid">
+        <article class="summary-card"><div class="summary-icon purple">▤</div><div><p>Total files</p><strong id="totalFiles">0</strong><small>In this workspace</small></div></article>
+        <article class="summary-card"><div class="summary-icon green">↗</div><div><p>Added this session</p><strong id="sessionFiles">0</strong><small>Since you opened the app</small></div></article>
+        <article class="summary-card"><div class="summary-icon orange">☆</div><div><p>Favorites</p><strong id="favoriteCount">0</strong><small>Quick access files</small></div></article>
+      </section>
+      <section class="content-grid">
+        <div class="files-panel">
+          <div class="panel-heading"><div><h2 id="listHeading">Your files</h2><p id="listSubheading">Manage your uploaded files and folders</p></div><div class="view-toggle"><button class="toggle active" id="listViewBtn" title="List view">☷</button><button class="toggle" id="gridViewBtn" title="Grid view">▦</button></div></div>
+          <div class="filter-row"><div class="filters"><button class="filter active" data-filter="all">All files</button><button class="filter" data-filter="document">Documents</button><button class="filter" data-filter="image">Images</button><button class="filter" data-filter="other">Other</button></div><select id="sortSelect" aria-label="Sort files"><option value="newest">Newest first</option><option value="oldest">Oldest first</option><option value="name">Name A–Z</option><option value="size">Largest first</option></select></div>
+          <div class="file-table-wrap" id="fileArea">
+            <table class="file-table"><thead><tr><th>Name</th><th>Size</th><th>Last activity</th><th></th></tr></thead><tbody id="fileRows"></tbody></table>
+            <div class="empty-state" id="emptyState"><div class="empty-illustration">▤</div><h3>No files here yet</h3><p>Upload files to start organizing your workspace.</p><button class="primary-btn" id="emptyUploadBtn">＋ Upload your first files</button></div>
+          </div>
+          <div class="panel-footer"><span id="showingText">Showing 0 files</span><button class="text-btn" id="clearSearchBtn">Clear filters</button></div>
+        </div>
+        <aside class="activity-panel" id="activityPanel"><div class="panel-heading"><div><h2>Recent activity</h2><p>Latest workspace changes</p></div><span class="live-dot"></span></div><div id="activityList" class="activity-list"></div><button class="activity-link" id="viewAllActivity">View all activity <span>→</span></button></aside>
+      </section>
+      <footer>Activity File Manager <span>•</span> Files stay in this browser in demo mode</footer>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status"></div>
+  <div class="modal-backdrop" id="modalBackdrop" hidden><div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><button class="modal-close" id="modalClose" aria-label="Close">×</button><div class="modal-symbol" id="modalSymbol">▤</div><h2 id="modalTitle">File details</h2><div id="modalBody"></div><div class="modal-actions"><button class="secondary-btn" id="modalCancel">Close</button><button class="primary-btn" id="modalPrimary">Done</button></div></div></div>
+  <script src="app.js"></script>
+</body>
+</html>
